@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/dictionary_default_img" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/dictionary_name"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/shortNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_centerHorizontal="true"
+        android:text="@string/item_short_note_about_vocabulary"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/allWordsAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_below="@+id/shortNote"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/dictionary_profil_words_amount_bg"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="351"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/allWordsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/allWordsAmount"
+        android:layout_alignStart="@+id/allWordsAmount"
+        android:layout_alignEnd="@+id/allWordsAmount"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="all words"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/learnedWordsAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_below="@+id/shortNote"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/dictionary_profil_words_amount_bg"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="351"
+        android:textSize="35sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/learnedWordsAmount"
+        android:layout_alignStart="@+id/learnedWordsAmount"
+        android:layout_alignEnd="@+id/learnedWordsAmount"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="in learn"
+        android:textSize="18sp" />
+
+    <View
+        android:id="@+id/splitLine"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/allWordsText"
+        android:background="#F44336"/>
+
+    <TextView
+        android:id="@+id/wordsList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/splitLine"
+        android:layout_marginTop="15dp"
+        android:text="Words list"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/wordsList"
+        android:layout_marginTop="10dp"/>
+
+</RelativeLayout>

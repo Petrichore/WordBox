@@ -9,4 +9,5 @@
     <string name="create_dictionary_edit_image">Edit Image</string>
     <string name="create_dictionary_btn">create dictionary</string>
     <string name="create_dictionary_short_note_hint">(English for job)</string>
+    <string name="dictionary_name">Dictionary name</string>
 </resources>
