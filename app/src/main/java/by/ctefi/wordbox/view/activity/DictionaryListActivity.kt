@@ -1,6 +1,7 @@
 package by.ctefi.wordbox.view.activity
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +9,11 @@ import by.ctefi.wordbox.R
 import by.ctefi.wordbox.entity.Dictionary
 import by.ctefi.wordbox.view.dictionaryRecyclerView.DictionaryListAdapter
 
-class DictionaryListActivity : Activity(), DictionaryListAdapter.OnClickListener {
+class DictionaryListActivity : Activity(), DictionaryListAdapter.OnDictionaryClickListener {
+
+    companion object {
+        const val CLICKED_DICTIONARY_ID: String = "wertyui24412414"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,36 +25,24 @@ class DictionaryListActivity : Activity(), DictionaryListAdapter.OnClickListener
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recyclerView.isNestedScrollingEnabled = false
 
-
-//        val wordsList = arrayListOf<Word>(
-//            Word("имя", "name"),
-//            Word("имя", "name"),
-//            Word("имя", "name"),
-//            Word("имя", "name"),
-//            Word("имя", "name"),
-//            Word("имя", "name"),
-//            Word("имя", "name"),
-//            Word("имя", "name"),
-//            Word("имя", "name"),
-//            Word("имя", "name"),
-//            Word("имя", "name"),
-//            Word("имя", "name")
-//        )
-
-        val dictionaryList = arrayListOf<Dictionary>(
-            Dictionary("for work", "Professional English"),
-            Dictionary("for education", "improve skills"),
-            Dictionary("famous quotes", "expand words knowledge"),
-            Dictionary("Countries and Capitals", "get to know the world"),
-            Dictionary("IT english", "understand IT"),
-            Dictionary("new terms", "professional English"),
-            Dictionary("for work", "Professional English")
+        //TODO observe DictionaryViewModel var
+        // to get latest version of the dictionary list
+        val dictionaryList = arrayListOf(
+            Dictionary(1, "English"),
+            Dictionary(2, "Education"),
+            Dictionary(3, "Quotes"),
+            Dictionary(4, "Countries and Capitals"),
+            Dictionary(5, "IT english"),
+            Dictionary(6, "new terms"),
+            Dictionary(7, "for work")
         )
 
         recyclerView.adapter = DictionaryListAdapter(dictionaryList, this)
     }
 
-    override fun onDictionaryClickListener(dictionary: Dictionary) {
-
+    override fun onDictionaryClick(dictionary: Dictionary) {
+        val intent = Intent(this, DictionaryActivity::class.java)
+        intent.putExtra(CLICKED_DICTIONARY_ID, dictionary.id)
+        startActivity(intent)
     }
 }

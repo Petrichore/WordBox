@@ -8,16 +8,16 @@ import by.ctefi.wordbox.entity.Dictionary
 
 class DictionaryListAdapter(
     private val dictionaryList: ArrayList<Dictionary>,
-    private val listener: OnClickListener
+    private val listener: OnDictionaryClickListener
 ) : RecyclerView.Adapter<DictionaryListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DictionaryListViewHolder {
-        val item = LayoutInflater.from(parent.context).inflate(R.layout.item_library, parent, false)
+        val item = LayoutInflater.from(parent.context).inflate(R.layout.item_dictionary, parent, false)
 
         val holder = DictionaryListViewHolder(item)
 
         holder.itemView.setOnClickListener{
-            listener.onDictionaryClickListener(dictionaryList[holder.adapterPosition])
+            listener.onDictionaryClick(dictionaryList[holder.adapterPosition])
         }
 
         return holder
@@ -31,7 +31,7 @@ class DictionaryListAdapter(
        return dictionaryList.size
     }
 
-    interface OnClickListener {
-        fun onDictionaryClickListener(dictionary: Dictionary)
+    interface OnDictionaryClickListener {
+        fun onDictionaryClick(dictionary: Dictionary)
     }
 }

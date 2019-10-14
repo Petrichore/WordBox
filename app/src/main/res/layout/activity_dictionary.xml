@@ -22,19 +22,10 @@
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/shortNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:layout_centerHorizontal="true"
-        android:text="@string/item_short_note_about_vocabulary"
-        android:textSize="15sp" />
-
-    <TextView
         android:id="@+id/allWordsAmount"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:layout_below="@+id/shortNote"
+        android:layout_below="@id/name"
         android:layout_marginStart="50dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/dictionary_profil_words_amount_bg"
@@ -59,7 +50,7 @@
         android:id="@+id/learnedWordsAmount"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:layout_below="@+id/shortNote"
+        android:layout_below="@+id/name"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="50dp"
@@ -84,26 +75,43 @@
         android:id="@+id/splitLine"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginEnd="16dp"
+        android:layout_below="@id/allWordsText"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/allWordsText"
-        android:background="#F44336"/>
+        android:layout_marginEnd="16dp"
+        android:background="#F44336" />
 
     <TextView
-        android:id="@+id/wordsList"
+        android:id="@+id/wordsListTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/splitLine"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:text="Words list"/>
+        android:fontFamily="@font/text_rotesk_corp_regular"
+        android:text="Words list"
+        android:textSize="25sp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/wordsList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/wordsList"
-        android:layout_marginTop="10dp"/>
+        android:layout_below="@+id/wordsListTitle"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/newWordBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/new_word_btn_bg"
+        android:fontFamily="@font/text_rotesk_corp_regular"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="new word"
+        android:textAllCaps="false"
+        android:textSize="25sp" />
 
 </RelativeLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="145dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/originalAndTranslation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="Original - оригинал"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/wordMeaning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/originalAndTranslation"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:maxLines="2"
+        android:text="something serving as a model or basis for imitations or copies. "
+        android:textSize="16sp"
+        android:ellipsize="end"/>
+
+    <TextView
+        android:id="@+id/openWordFullInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_below="@id/wordMeaning"
+        android:text="open info"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:padding="10dp"
+        android:textColor="#F87761"/>
+
+</RelativeLayout>
