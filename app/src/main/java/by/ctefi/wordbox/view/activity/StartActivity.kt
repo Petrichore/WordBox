@@ -16,6 +16,7 @@ class StartActivity : Activity() {
             startNewActivity(DictionaryListActivity::class.java)
         }
 
+        //TODO this opportunity should be put in dictionary list
         newDictionaryBtn.setOnClickListener{
             startNewActivity(DictionaryCreationActivity::class.java)
         }
