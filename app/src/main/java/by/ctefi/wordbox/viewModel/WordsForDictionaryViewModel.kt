@@ -3,16 +3,17 @@ package by.ctefi.wordbox.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import by.ctefi.wordbox.database.WordBoxDatabase
 import by.ctefi.wordbox.entity.Word
+import by.ctefi.wordbox.entity.WordDictionaryJoin
 import by.ctefi.wordbox.model.WordsRepository
 
-class WordsForDictionaryViewModel(application: Application) : AndroidViewModel(application) {
+class WordsForDictionaryViewModel(
+    application: Application,
+    dictionaryId: Int
+) : AndroidViewModel(application) {
 
-    private val wordsForDictionaryList: MutableLiveData<ArrayList<Word>> by lazy {
-        MutableLiveData<ArrayList<Word>>()
-    }
+    val wordsForDictionaryList: LiveData<List<Word>>
 
     private val wordsRepository: WordsRepository
 
@@ -23,9 +24,10 @@ class WordsForDictionaryViewModel(application: Application) : AndroidViewModel(a
                 wordDictionaryJoinDao = wordBoxDatabase.getWordDictionaryJoinDao(),
                 wordDao = wordBoxDatabase.getWordDao()
             )
+        wordsForDictionaryList = wordsRepository.getWordsForDictionary(dictionaryId)
     }
 
-    fun updateWordsForDictionaryList(dictionaryId: Int){
-        wordsForDictionaryList.value = wordsRepository.getWordsForDictionary(dictionaryId).value
+    fun insertWordForDictionary(word: Word, dictionaryId: Int) {
+        wordsRepository.insertWord(word, WordDictionaryJoin(word.id, dictionaryId))
     }
 }

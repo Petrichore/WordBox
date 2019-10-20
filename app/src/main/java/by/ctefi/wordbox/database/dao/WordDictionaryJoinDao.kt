@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import by.ctefi.wordbox.entity.Word
+import by.ctefi.wordbox.entity.WordDictionaryJoin
 
 @Dao
 interface WordDictionaryJoinDao {
@@ -17,8 +18,8 @@ interface WordDictionaryJoinDao {
                 "WHERE word_dictionary.dictionaryId = :dictionaryId " +
                 "ORDER BY word.id DESC"
     )
-    fun getWordsForDictionary(dictionaryId: Int): LiveData<ArrayList<Word>>
+    fun getWordsForDictionary(dictionaryId: Int): LiveData<List<Word>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertWordForDictionary(wordId: Int, dictionaryId: Int)
+    fun insertWordForDictionary(wordDictionaryJoin: WordDictionaryJoin)
 }

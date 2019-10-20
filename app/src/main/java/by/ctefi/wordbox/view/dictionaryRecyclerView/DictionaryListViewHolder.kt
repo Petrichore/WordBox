@@ -9,6 +9,6 @@ class DictionaryListViewHolder(private val item: View) : RecyclerView.ViewHolder
 
     fun bind(dictionary: Dictionary){
         item.dictionaryName.text = dictionary.name
-        item.dictionaryWordsAmount.text = dictionary.wordsAmount.toString()
+        item.wordsAmountValue.text = dictionary.wordsAmount.toString()
     }
 }

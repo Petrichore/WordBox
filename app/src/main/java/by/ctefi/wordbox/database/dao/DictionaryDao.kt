@@ -11,7 +11,7 @@ import by.ctefi.wordbox.entity.Dictionary
 interface DictionaryDao {
 
     @Query("SELECT * FROM dictionary ORDER BY id DESC")
-    fun getAllDictionary(): LiveData<ArrayList<Dictionary>>
+    fun getAllDictionary(): LiveData<List<Dictionary>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDictionary(dictionary: Dictionary)

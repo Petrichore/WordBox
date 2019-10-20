@@ -7,7 +7,7 @@ import by.ctefi.wordbox.R
 import by.ctefi.wordbox.entity.Dictionary
 
 class DictionaryListAdapter(
-    private val dictionaryList: ArrayList<Dictionary>,
+    private var dictionaryList: List<Dictionary>,
     private val listener: OnDictionaryClickListener
 ) : RecyclerView.Adapter<DictionaryListViewHolder>() {
 
@@ -29,6 +29,11 @@ class DictionaryListAdapter(
 
     override fun getItemCount(): Int {
        return dictionaryList.size
+    }
+
+    fun updateDictionaryList(list: List<Dictionary>){
+        dictionaryList = list
+        notifyDataSetChanged()
     }
 
     interface OnDictionaryClickListener {

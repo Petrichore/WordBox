@@ -7,7 +7,7 @@ import by.ctefi.wordbox.R
 import by.ctefi.wordbox.entity.Word
 
 class WordListAdapter(
-    private val wordList: ArrayList<Word>,
+    private var wordList: List<Word>,
     val listener: OnWordClickListener
 ) : RecyclerView.Adapter<WordListViewHolder>() {
 
@@ -28,6 +28,11 @@ class WordListAdapter(
 
     override fun getItemCount(): Int {
         return wordList.size
+    }
+
+    fun updateWordsList(list: List<Word>){
+        wordList = list
+        notifyDataSetChanged()
     }
 
     interface OnWordClickListener {

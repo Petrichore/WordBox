@@ -1,45 +1,77 @@
 package by.ctefi.wordbox.view.activity
 
-import android.app.Activity
 import android.os.Bundle
+import android.widget.EditText
+import android.widget.ImageView
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.ctefi.wordbox.R
 import by.ctefi.wordbox.entity.Word
 import by.ctefi.wordbox.view.wordRecyclerView.WordListAdapter
+import by.ctefi.wordbox.viewModel.WordsForDictionaryViewModel
+import by.ctefi.wordbox.viewModel.factory.WordsForDictionaryVMFactory
 
-class DictionaryActivity : Activity(), WordListAdapter.OnWordClickListener {
+class DictionaryActivity : FragmentActivity(), WordListAdapter.OnWordClickListener {
+
+    private val wordsForDictionaryVM by lazy {
+        ViewModelProviders.of(
+            this,
+            WordsForDictionaryVMFactory(this.application, dictionaryId)
+        ).get(WordsForDictionaryViewModel::class.java)
+    }
+
+    private var dictionaryId: Int = -1
+
+    private var wordsList = emptyList<Word>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dictionary)
 
-        //TODO use to get selected dictionary from repository
-        val dictionaryId = intent.getIntExtra(DictionaryListActivity.CLICKED_DICTIONARY_ID, -1)
+        dictionaryId = intent.getIntExtra(DictionaryListActivity.CLICKED_DICTIONARY_ID, -1)
 
         val recyclerView: RecyclerView = findViewById(R.id.wordsList)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.isNestedScrollingEnabled = false
-
-        val wordsList = arrayListOf(
-            Word(1, "name", "имя"),
-            Word(2, "name", "имя"),
-            Word(3, "name", "имя"),
-            Word(4, "name", "имя"),
-            Word(5, "name", "имя"),
-            Word(5, "name", "имя"),
-            Word(7, "name", "имя"),
-            Word(8, "name", "имя"),
-            Word(9, "name", "имя"),
-            Word(10, "name", "имя"),
-            Word(11, "name", "имя"),
-            Word(12, "name", "имя")
-        )
-
         recyclerView.adapter = WordListAdapter(wordsList, listener = this)
+
+        wordsForDictionaryVM
+            .wordsForDictionaryList
+            .observe(this, Observer {
+                if (it != null) {
+                    (recyclerView.adapter as WordListAdapter).updateWordsList(it)
+                } else {
+                    //TODO show TextView Info "List is empty now. Add new word to begin learning!"
+                }
+            })
+
+        val searchLine = findViewById<EditText>(R.id.searchLine)
+        val addWordBtn = findViewById<ImageView>(R.id.addWordBtn)
+
+        //TODO replace with dialog window for words adding
+
+        addWordBtn.setOnClickListener {
+            if (dictionaryId == 1) {
+                wordsForDictionaryVM.insertWordForDictionary(
+                    Word(1, "Name", "Имя, название"),
+                    dictionaryId
+                )
+            } else if (dictionaryId == 2) {
+                wordsForDictionaryVM.insertWordForDictionary(
+                    Word(2, "Technologies", "Технологии"),
+                    dictionaryId
+                )
+            }
+        }
+    }
+
+    private fun onAddWordButtonClick() {
     }
 
     override fun onWordClick(wordId: Int) {
-        //TODO add onClick response
+        //TODO show fragment with more detailed information
     }
 }

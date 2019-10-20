@@ -13,7 +13,7 @@ import by.ctefi.wordbox.entity.WordDictionaryJoin
 
 @Database(
     entities = [Word::class, Dictionary::class, WordDictionaryJoin::class],
-    version = 1
+    version = 2, exportSchema = false
 )
 abstract class WordBoxDatabase : RoomDatabase() {
 

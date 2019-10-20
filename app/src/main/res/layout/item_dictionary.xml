@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="280dp"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="140dp"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/dictionaryImg"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/dictionary_default_img" />
 
@@ -16,29 +16,45 @@
         android:id="@+id/dictionaryName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/item_dictionary_name"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/dictionaryWordsAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="350"
-        android:textSize="30sp" />
+        android:layout_toEndOf="@+id/dictionaryImg"
+        android:maxLines="2"
+        android:text="English for information technologies"
+        android:textSize="26sp" />
 
     <TextView
+        android:id="@+id/wordsAmountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/dictionaryImg"
+        android:layout_alignBottom="@id/dictionaryImg"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/dictionaryImg"
         android:text="@string/item_words_amount"
-        android:textSize="20sp" />
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/wordsAmountValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dictionaryName"
+        android:layout_alignBaseline="@+id/wordsAmountText"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/wordsAmountText"
+        android:text="350"
+        android:textColor="#000000"
+        android:textSize="16sp" />
 
     <View
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
+        android:layout_below="@id/wordsAmountText"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:background="#80F44336"/>
-</LinearLayout>
+        android:background="#80F44336" />
+</RelativeLayout>

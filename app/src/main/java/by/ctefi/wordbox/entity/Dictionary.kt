@@ -9,7 +9,10 @@ data class Dictionary(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
-    val wordsAmount: Int = 0,
+    var wordsAmount: Int = 0,
     @Ignore
-    val wordsList: ArrayList<Word>? = null
-)
+    val wordsList: ArrayList<Word>?
+) {
+    constructor(id: Int, name: String, wordsAmount: Int = 0)
+            : this(id, name, wordsAmount, null)
+}
