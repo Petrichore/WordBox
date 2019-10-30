@@ -18,7 +18,7 @@ interface WordDictionaryJoinDao {
                 "WHERE word_dictionary.dictionaryId = :dictionaryId " +
                 "ORDER BY word.id DESC"
     )
-    fun getWordsForDictionary(dictionaryId: Int): LiveData<List<Word>>
+    fun getWordsForDictionary(dictionaryId: Long): LiveData<List<Word>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertWordForDictionary(wordDictionaryJoin: WordDictionaryJoin)

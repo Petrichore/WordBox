@@ -11,8 +11,44 @@ class WordsRepository(
     private val wordDao: WordDao
 ) {
 
-    fun getWordsForDictionary(dictionaryId: Int): LiveData<List<Word>> {
-        return wordDictionaryJoinDao.getWordsForDictionary(dictionaryId)
+    private lateinit var wordList: LiveData<List<Word>>
+
+    fun getWordsForDictionary(dictionaryId: Long): LiveData<List<Word>> {
+        if (!::wordList.isInitialized) {
+            wordList = wordDictionaryJoinDao.getWordsForDictionary(dictionaryId)
+        }
+        return wordList
+    }
+
+    private fun getWordById(wordId: Long): Word {
+        val list = wordList.value
+        if (list != null) {
+            for (word in list) {
+                if (word.id == wordId) {
+                    return word
+                }
+            }
+        }
+        // TODO replace with custom Exception
+        throw Exception()
+    }
+
+    fun insertWord(word: Word, wordDictionaryJoin: WordDictionaryJoin) {
+        val insertionThread = Thread(
+            Runnable {
+                wordDao.insertWord(word)
+                wordDictionaryJoinDao.insertWordForDictionary(wordDictionaryJoin)
+            })
+
+        insertionThread.start()
+    }
+
+    fun deleteWord(wordId: Long) {
+        val deleteThread = Thread(Runnable {
+            val word = getWordById(wordId)
+            wordDao.deleteWord(word)
+        })
+        deleteThread.start()
     }
 
     fun getAllwords(): LiveData<List<Word>> {
@@ -23,16 +59,6 @@ class WordsRepository(
         val insertionThread = Thread(
             Runnable {
                 wordDao.insertWord(word)
-            })
-
-        insertionThread.start()
-    }
-
-    fun insertWord(word: Word, wordDictionaryJoin: WordDictionaryJoin) {
-        val insertionThread = Thread(
-            Runnable {
-                wordDao.insertWord(word)
-                wordDictionaryJoinDao.insertWordForDictionary(wordDictionaryJoin)
             })
 
         insertionThread.start()

@@ -9,6 +9,6 @@ class WordListViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
 
     fun bind(word: Word) {
         view.originalAndTranslation.text = word.original + " - " + word.translation
-        view.wordMeaning.text = word.meaning
+        // TODO try to manage size of word item
     }
 }

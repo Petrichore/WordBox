@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">WordBox</string>
     <string name="start_activity_title">Word Box</string>
-    <string name="start_activity_open_library">my library</string>
+    <string name="start_activity_open_library">open my library</string>
     <string name="start_activity_new_dictionary">create new\n dictionary</string>
     <string name="item_words_amount">words amount: </string>
     <string name="item_short_note_about_vocabulary">(short note about vocabulary)</string>

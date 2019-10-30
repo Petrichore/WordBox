@@ -7,10 +7,10 @@ import by.ctefi.wordbox.viewModel.WordsForDictionaryViewModel
 
 class WordsForDictionaryVMFactory(
     private val application: Application,
-    private val dictionaryId: Int
+    private val dictionaryId: Long
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return WordsForDictionaryViewModel(application,dictionaryId) as T
+        return WordsForDictionaryViewModel(application, dictionaryId) as T
     }
 }

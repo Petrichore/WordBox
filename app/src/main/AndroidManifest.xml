@@ -18,9 +18,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.activity.DictionaryListActivity"/>
-        <activity android:name=".view.activity.DictionaryCreationActivity"/>
-        <activity android:name=".view.activity.DictionaryActivity"/>
+        <activity android:name=".view.activity.DictionaryListActivity" />
+        <activity android:name=".view.activity.DictionaryActivity" />
 
     </application>
 </manifest>

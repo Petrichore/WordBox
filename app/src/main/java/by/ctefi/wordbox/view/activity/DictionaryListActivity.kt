@@ -3,7 +3,9 @@ package by.ctefi.wordbox.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,15 +13,23 @@ import androidx.recyclerview.widget.RecyclerView
 import by.ctefi.wordbox.R
 import by.ctefi.wordbox.entity.Dictionary
 import by.ctefi.wordbox.view.dictionaryRecyclerView.DictionaryListAdapter
+import by.ctefi.wordbox.view.fragment.AddDictionaryFragment
+import by.ctefi.wordbox.view.fragment.ConfirmDelDictionaryFragment
 import by.ctefi.wordbox.viewModel.DictionaryViewModel
 
-class DictionaryListActivity : FragmentActivity(), DictionaryListAdapter.OnDictionaryClickListener {
+class DictionaryListActivity : FragmentActivity(),
+    DictionaryListAdapter.OnDictionaryElementClickListener,
+    AddDictionaryFragment.CommitDictionaryCreation,
+    ConfirmDelDictionaryFragment.CommitDictionaryDelete {
 
     companion object {
-        const val CLICKED_DICTIONARY_ID: String = "wertyui24412414"
+        const val ID_DICTIONARY_KEY: String = "wertyui24412414"
     }
 
-    private lateinit var dictionaryViewModel: DictionaryViewModel
+    private val dictionaryViewModel: DictionaryViewModel by lazy {
+        ViewModelProviders.of(this).get(DictionaryViewModel::class.java)
+    }
+
     private var dictionaryList: List<Dictionary> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,22 +43,46 @@ class DictionaryListActivity : FragmentActivity(), DictionaryListAdapter.OnDicti
         recyclerView.isNestedScrollingEnabled = false
         recyclerView.adapter = DictionaryListAdapter(dictionaryList, this)
 
-        dictionaryViewModel = ViewModelProviders.of(this).get(DictionaryViewModel::class.java)
-
         dictionaryViewModel
             .dictionaryList
             .observe(this, Observer {
                 if (it != null) {
+                    Log.d("AAAA", "dictionaryList changed")
                     (recyclerView.adapter as DictionaryListAdapter).updateDictionaryList(it)
                 } else {
-                    Log.d("AAAA", "dictionaryList is Null")
+                    // TODO show text
                 }
             })
+
+        findViewById<ImageView>(R.id.newDictionary).setOnClickListener {
+            openCreateDictionaryDialog(supportFragmentManager)
+        }
     }
 
     override fun onDictionaryClick(dictionary: Dictionary) {
         val intent = Intent(this, DictionaryActivity::class.java)
-        intent.putExtra(CLICKED_DICTIONARY_ID, dictionary.id)
+        intent.putExtra(ID_DICTIONARY_KEY, dictionary.id)
         startActivity(intent)
+    }
+
+    override fun showDeleteDictionaryDialog(dictionaryId: Long) {
+        val confirmDeleteDialogFragment = ConfirmDelDictionaryFragment()
+        val bundle = Bundle()
+        bundle.putLong(ID_DICTIONARY_KEY, dictionaryId)
+        confirmDeleteDialogFragment.arguments = bundle
+        confirmDeleteDialogFragment.show(supportFragmentManager, "confirmDictionaryDel")
+    }
+
+    override fun onDictionaryCreated(dictionary: Dictionary) {
+        dictionaryViewModel.insertDictionary(dictionary)
+    }
+
+    override fun onDeleteConfirm(dictionaryId: Long) {
+        dictionaryViewModel.deleteDictionary(dictionaryId)
+    }
+
+    private fun openCreateDictionaryDialog(fragmentManager: FragmentManager) {
+        val dialogFragment = AddDictionaryFragment()
+        dialogFragment.show(fragmentManager, "addWordDialog")
     }
 }

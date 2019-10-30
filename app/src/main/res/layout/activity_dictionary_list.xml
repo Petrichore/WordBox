@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
     <TextView
+        android:id="@+id/libraryTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:text="Library"
-        android:textColor="#5F330C"
-        android:fontFamily="@font/title_literata_italic"
-        android:layout_marginTop="20dp"/>
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:text="Dictionary library"
+        android:textColor="#1D1D1D"
+        android:fontFamily="@font/vienna_convention"
+        android:layout_marginTop="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/libraryTitle"
         android:id="@+id/dictionaryList"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/newDictionary"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/library"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>

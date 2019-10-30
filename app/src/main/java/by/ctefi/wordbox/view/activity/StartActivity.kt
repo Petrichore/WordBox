@@ -12,13 +12,8 @@ class StartActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
-        openLibBtn.setOnClickListener {
+        openLib.setOnClickListener {
             startNewActivity(DictionaryListActivity::class.java)
-        }
-
-        //TODO this opportunity should be put in dictionary list
-        newDictionaryBtn.setOnClickListener{
-            startNewActivity(DictionaryCreationActivity::class.java)
         }
     }
 

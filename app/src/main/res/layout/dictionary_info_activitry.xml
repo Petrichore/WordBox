@@ -9,7 +9,7 @@
         android:layout_height="90dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:src="@drawable/dictionary_default_img" />
+        android:src="@drawable/dictionary_icon_default" />
 
     <TextView
         android:id="@+id/name"
