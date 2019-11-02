@@ -2,8 +2,9 @@ package by.ctefi.wordbox.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
@@ -19,7 +20,7 @@ import by.ctefi.wordbox.viewModel.DictionaryViewModel
 
 class DictionaryListActivity : FragmentActivity(),
     DictionaryListAdapter.OnDictionaryElementClickListener,
-    AddDictionaryFragment.CommitDictionaryCreation,
+    AddDictionaryFragment.DictionaryCreationRouter,
     ConfirmDelDictionaryFragment.CommitDictionaryDelete {
 
     companion object {
@@ -36,6 +37,7 @@ class DictionaryListActivity : FragmentActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dictionary_list)
 
+        val helloMsg = findViewById<TextView>(R.id.helloMsgDictionaryList)
         val recyclerView: RecyclerView = findViewById(R.id.dictionaryList)
 
         recyclerView.setHasFixedSize(true)
@@ -46,12 +48,12 @@ class DictionaryListActivity : FragmentActivity(),
         dictionaryViewModel
             .dictionaryList
             .observe(this, Observer {
-                if (it != null) {
-                    Log.d("AAAA", "dictionaryList changed")
-                    (recyclerView.adapter as DictionaryListAdapter).updateDictionaryList(it)
+                if (it.isNotEmpty()) {
+                    helloMsg.visibility = View.GONE
                 } else {
-                    // TODO show text
+                    helloMsg.visibility = View.VISIBLE
                 }
+                (recyclerView.adapter as DictionaryListAdapter).updateDictionaryList(it)
             })
 
         findViewById<ImageView>(R.id.newDictionary).setOnClickListener {
@@ -73,8 +75,8 @@ class DictionaryListActivity : FragmentActivity(),
         confirmDeleteDialogFragment.show(supportFragmentManager, "confirmDictionaryDel")
     }
 
-    override fun onDictionaryCreated(dictionary: Dictionary) {
-        dictionaryViewModel.insertDictionary(dictionary)
+    override fun onDictionaryCreated(id: Long, name: String, description: String) {
+        dictionaryViewModel.insertDictionary(id, name, description)
     }
 
     override fun onDeleteConfirm(dictionaryId: Long) {

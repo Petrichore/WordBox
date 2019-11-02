@@ -29,7 +29,6 @@ class WordsRepository(
                 }
             }
         }
-        // TODO replace with custom Exception
         throw Exception()
     }
 
@@ -49,18 +48,5 @@ class WordsRepository(
             wordDao.deleteWord(word)
         })
         deleteThread.start()
-    }
-
-    fun getAllwords(): LiveData<List<Word>> {
-        return wordDao.getAllWords()
-    }
-
-    fun insertWord(word: Word) {
-        val insertionThread = Thread(
-            Runnable {
-                wordDao.insertWord(word)
-            })
-
-        insertionThread.start()
     }
 }

@@ -11,4 +11,24 @@
     <string name="create_dictionary_short_note_hint">(English for job)</string>
     <string name="dictionary_name">Dictionary name</string>
     <string name="new_word_btn_text">new word</string>
+    <string name="hello_msg_dictionary_list">Great to see you!\nHow i can see you have not created any dictionaries yet. Create new one to begin your studying!</string>
+    <string name="hello_msg_dictionary">New dictionary! Great!\nNow you can add some words here.\nEnjoy studying!</string>
+    <string name="title_create_new_word">New Word</string>
+    <string name="new_word_original">Original</string>
+    <string name="new_word_translation">Translation</string>
+    <string name="new_word_meaning">Word Meaning</string>
+    <string name="new_word_cancel_btn">Cancel</string>
+    <string name="new_word_commit_btn">Commit</string>
+    <string name="edit_word_title">Edit word</string>
+    <string name="search_word_line">Search word</string>
+    <string name="dictionary_library_title">Dictionary library</string>
+    <string name="new_dictionary_title">New Dictionary</string>
+    <string name="dictionary_name_hint">Dictionary Name</string>
+    <string name="describe_this_dictionary_in_few_words_hint">Describe this dictionary in few words</string>
+    <string name="cancel_btn_text">Cancel</string>
+    <string name="commit_btn_text">Commit</string>
+    <string name="delete_dictionary_warning_text">If you delete a dictionary, then all its words are deleted!</string>
+    <string name="delete_btn_text">Delete</string>
+    <string name="delete_word_warning_text">Delete this word?</string>
+    <string name="detail_word_info_title">Detail Information</string>
 </resources>

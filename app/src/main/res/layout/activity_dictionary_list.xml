@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:layout_centerHorizontal="true"
-        android:text="Dictionary library"
+        android:text="@string/dictionary_library_title"
         android:textColor="#1D1D1D"
         android:fontFamily="@font/vienna_convention"
         android:layout_marginTop="10dp"/>
@@ -32,5 +32,18 @@
         android:layout_marginBottom="25dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/helloMsgDictionaryList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_centerInParent="true"
+        android:textColor="#5A5A5A"
+        android:text="@string/hello_msg_dictionary_list"
+        android:visibility="visible"/>
 
 </RelativeLayout>

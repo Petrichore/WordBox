@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/dictionaryImg"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/dictionary_icon_books" />
@@ -16,43 +16,22 @@
         android:id="@+id/dictionaryName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="7dp"
         android:layout_alignTop="@+id/dictionaryImg"
         android:layout_toEndOf="@+id/dictionaryImg"
         android:textColor="#000000"
+        android:ellipsize="end"
         android:maxLines="2"
-        android:text="English for information technologies"
-        android:textSize="21sp" />
-
-    <TextView
-        android:id="@+id/wordsAmountText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/dictionaryImg"
-        android:layout_marginStart="20dp"
-        android:layout_toEndOf="@+id/dictionaryImg"
-        android:text="@string/item_words_amount"
-        android:textColor="#666668"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/wordsAmountValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dictionaryName"
-        android:layout_alignBaseline="@+id/wordsAmountText"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/wordsAmountText"
-        android:text="350"
-        android:textColor="#666668"
-        android:textSize="16sp" />
+        android:text="English for information techno logiesawdadadadawdawdadawda"
+        android:textSize="19sp" />
 
     <View
         android:id="@+id/divLine"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_below="@id/wordsAmountText"
+        android:layout_below="@id/dictionaryImg"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
@@ -60,10 +39,10 @@
 
     <ImageView
         android:id="@+id/delDictionaryBtn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_above="@+id/divLine"
         android:layout_alignEnd="@+id/divLine"
-        android:layout_marginBottom="9dp"
+        android:layout_marginBottom="3dp"
         android:src="@drawable/delete" />
 </RelativeLayout>

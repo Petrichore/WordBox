@@ -1,15 +1,15 @@
 package by.ctefi.wordbox.view.fragment
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import by.ctefi.wordbox.R
-import by.ctefi.wordbox.entity.Word
 import by.ctefi.wordbox.view.activity.DictionaryActivity
 
 class AddWordFragment : DialogFragment() {
@@ -23,6 +23,7 @@ class AddWordFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return inflater.inflate(R.layout.fragment_dialog_add_word, container, false)
     }
 
@@ -42,31 +43,21 @@ class AddWordFragment : DialogFragment() {
         super.onActivityCreated(savedInstanceState)
 
         view?.findViewById<Button>(R.id.addWordCommit)?.setOnClickListener {
-
-            val original: String = originalField.text.toString()
-            val translation: String = translationField.text.toString()
-            val meaning: String = meaningField.text.toString()
-
-            if (inputValidation(original, translation, meaning)) {
-                (activity as DictionaryActivity).onWordCreated(
-                    Word(generateId(), original, translation, meaning)
-                )
-                dismiss()
-            } else {
-                Toast.makeText(activity, "Unsuitable data", Toast.LENGTH_SHORT).show()
-            }
+            (activity as DictionaryActivity).onWordCreated(
+                generateId(),
+                originalField.text.toString(),
+                translationField.text.toString(),
+                meaningField.text.toString()
+            )
+            dismiss()
         }
-    }
-
-    private fun inputValidation(original: String, translation: String, meaning: String): Boolean {
-        return !(original.isBlank() && translation.isBlank() && meaning.isBlank())
     }
 
     private fun generateId(): Long {
         return System.currentTimeMillis()
     }
 
-    interface CommitDialog {
-        fun onWordCreated(word: Word)
+    interface AddWordRouter {
+        fun onWordCreated(id: Long, original: String, translation: String, meaning: String)
     }
 }

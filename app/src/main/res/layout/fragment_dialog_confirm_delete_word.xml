@@ -1,53 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="250dp"
+    android:layout_height="150dp"
+    android:background="@drawable/fragment_dialog_bg">
 
     <TextView
         android:id="@+id/warningText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="10dp"
-        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/dialog_font"
         android:gravity="center_horizontal"
-        android:text="Delete this word?"
+        android:text="@string/delete_word_warning_text"
         android:textColor="#474747"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/delWordCancel"
-        android:layout_width="100dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/warningText"
-        android:layout_alignStart="@+id/warningText"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="-30dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/cancel_btn_bg"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:text="No"
+        android:text="@string/cancel_btn_text"
         android:textAllCaps="false"
         android:textColor="#858585"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/delWordCommit"
-        android:layout_width="100dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/warningText"
-        android:layout_alignEnd="@+id/warningText"
-        android:layout_marginEnd="-30dp"
-        android:layout_marginTop="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/commit_btn_bg"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:text="Yes"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="@string/delete_btn_text"
         android:textAllCaps="false"
         android:textColor="#858585"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package by.ctefi.wordbox.view.fragment
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +23,7 @@ class ConfirmDelDictionaryFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return inflater.inflate(
             R.layout.fragment_dialog_confirm_delete_dictionary,
             container,

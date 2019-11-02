@@ -5,8 +5,8 @@
 
     <View
         android:id="@+id/imgCard"
-        android:layout_width="400dp"
-        android:layout_height="35dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/icon"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
@@ -16,8 +16,8 @@
 
     <LinearLayout
         android:id="@+id/icon"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/dictionary_icon_shape"
@@ -26,8 +26,8 @@
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/dictionary_icon_default" />
     </LinearLayout>
@@ -40,8 +40,9 @@
         android:layout_below="@+id/imgCard"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/vienna_convention"
         android:text="@string/dictionary_name"
-        android:textSize="28sp" />
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/searchLine"
@@ -52,11 +53,12 @@
         android:layout_marginTop="18dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/word_search_line_bg"
-        android:hint="Search word"
+        android:hint="@string/search_word_line"
         android:inputType="text"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:importantForAutofill="no" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/wordsList"
@@ -69,9 +71,23 @@
         android:id="@+id/addWordBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignEnd="@+id/imgCard"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
         android:src="@drawable/plus" />
+
+    <TextView
+        android:id="@+id/helloMsgDictionary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:text="@string/hello_msg_dictionary"
+        android:textColor="#5A5A5A"
+        android:textSize="18sp"
+        android:visibility="visible" />
 
 </RelativeLayout>

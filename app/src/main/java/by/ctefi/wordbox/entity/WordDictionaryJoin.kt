@@ -24,7 +24,8 @@ import androidx.room.ForeignKey.CASCADE
     ]
 )
 data class WordDictionaryJoin(
-    var wordId: Long,
+
+    val wordId: Long,
     @ColumnInfo(index = true)
     val dictionaryId: Long
 )

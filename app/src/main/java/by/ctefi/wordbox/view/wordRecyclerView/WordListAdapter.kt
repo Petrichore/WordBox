@@ -18,7 +18,7 @@ class WordListAdapter(
         val viewHolder = WordListViewHolder(item)
 
         viewHolder.itemView.setOnClickListener {
-            listener.onWordClick(wordList[viewHolder.adapterPosition].id)
+            listener.onWordClick(wordList[viewHolder.adapterPosition])
         }
 
         viewHolder.itemView.findViewById<ImageView>(R.id.deleteWordBtn).setOnClickListener {
@@ -41,7 +41,7 @@ class WordListAdapter(
     }
 
     interface OnWordClickListener {
-        fun onWordClick(wordId: Long)
+        fun onWordClick(word: Word)
         fun showDelWordDialog(wordId: Long)
     }
 }

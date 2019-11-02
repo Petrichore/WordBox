@@ -9,10 +9,11 @@ data class Dictionary(
     @PrimaryKey
     val id: Long,
     val name: String,
+    val description: String = "",
     var wordsAmount: Int = 0,
     @Ignore
-    val wordsList: ArrayList<Word>?
+    var wordsList: List<Word>?
 ) {
-    constructor(id: Long, name: String, wordsAmount: Int = 0)
-            : this(id, name, wordsAmount, null)
+    constructor(id: Long, name: String, description: String, wordsAmount: Int = 0)
+            : this(id, name, description, wordsAmount, null)
 }

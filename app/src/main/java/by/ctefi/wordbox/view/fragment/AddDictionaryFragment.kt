@@ -1,15 +1,15 @@
 package by.ctefi.wordbox.view.fragment
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import by.ctefi.wordbox.R
-import by.ctefi.wordbox.entity.Dictionary
 
 class AddDictionaryFragment : DialogFragment() {
 
@@ -22,6 +22,7 @@ class AddDictionaryFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return inflater.inflate(R.layout.fragment_dialog_add_dictionary, container, false)
     }
 
@@ -41,27 +42,20 @@ class AddDictionaryFragment : DialogFragment() {
         super.onActivityCreated(savedInstanceState)
 
         addDictionaryCommit.setOnClickListener {
-            val name = dictionaryNameField.text.toString()
-
-            if (inputValidation(name)) {
-                val id = generateId()
-                (activity as CommitDictionaryCreation).onDictionaryCreated(Dictionary(id, name))
-                dismiss()
-            } else {
-                Toast.makeText(activity, "Unsuitable data", Toast.LENGTH_SHORT).show()
-            }
+            (activity as DictionaryCreationRouter).onDictionaryCreated(
+                generateId(),
+                dictionaryNameField.text.toString(),
+                dictionaryDescriptionField.text.toString()
+            )
+            dismiss()
         }
-    }
-
-    private fun inputValidation(name: String): Boolean {
-        return !name.isBlank()
     }
 
     private fun generateId(): Long {
         return System.currentTimeMillis()
     }
 
-    interface CommitDictionaryCreation {
-        fun onDictionaryCreated(dictionary: Dictionary)
+    interface DictionaryCreationRouter {
+        fun onDictionaryCreated(id: Long, name: String, description: String)
     }
 }

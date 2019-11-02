@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import by.ctefi.wordbox.database.WordBoxDatabase
 import by.ctefi.wordbox.database.dao.DictionaryDao
 import by.ctefi.wordbox.entity.Dictionary
+import by.ctefi.wordbox.entity.Word
 
 class DictionariesRepository private constructor(private val dictionaryDao: DictionaryDao) {
 
@@ -56,5 +57,10 @@ class DictionariesRepository private constructor(private val dictionaryDao: Dict
                 dictionaryDao.deleteDictionary(dictionary)
             })
         deleteThread.start()
+    }
+
+    fun updateDictionaryWordList(dictionaryId: Long, wordList: List<Word>) {
+        val dictionary = getDictionaryById(dictionaryId)
+        dictionary.wordsList = wordList
     }
 }

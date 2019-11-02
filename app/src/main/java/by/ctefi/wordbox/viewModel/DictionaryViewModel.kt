@@ -17,11 +17,17 @@ class DictionaryViewModel(application: Application) : AndroidViewModel(applicati
         dictionaryList = dictionaryRepository.getAllDictionaries()
     }
 
-    fun insertDictionary(dictionary: Dictionary) {
-        dictionaryRepository.insertDictionary(dictionary)
+    fun insertDictionary(id: Long, dictionaryName: String, description: String) {
+        if (validateInput(dictionaryName)) {
+            dictionaryRepository.insertDictionary(Dictionary(id, dictionaryName, description))
+        }
     }
 
     fun deleteDictionary(dictionaryId: Long) {
         dictionaryRepository.deleteDictionary(dictionaryId)
+    }
+
+    private fun validateInput(dictionaryName: String): Boolean {
+        return dictionaryName.isNotBlank()
     }
 }
